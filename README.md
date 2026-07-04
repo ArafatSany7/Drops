@@ -1,32 +1,41 @@
-# React + TypeScript + Vite
+# Drops
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Drops is a modern, responsive web platform designed to streamline blood donation. It connects blood donors with those in need, aiming to save lives through quick and efficient matching.
 
-Currently, two official plugins are available:
+## Live Demo
+[https://dropsforlife.vercel.app](https://dropsforlife.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
+- **Frontend:** React, TypeScript, Vite, Tailwind CSS
+- **Backend:** Node.js, Express, Prisma
+- **Authentication:** JWT, Google OAuth
+- **Database:** PostgreSQL (via Prisma)
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+- Node.js
+- PostgreSQL database
 
-## Expanding the Oxlint configuration
+### Installation
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+1. Clone the repository
+2. Install frontend dependencies:
+   ```bash
+   npm install
+   ```
+3. Install backend dependencies:
+   ```bash
+   cd backend
+   npm install
+   ```
+4. Set up your `.env` variables for the backend (Database URL, JWT Secret, Google Client ID, etc.)
+5. Run Prisma migrations:
+   ```bash
+   cd backend
+   npx prisma generate
+   npx prisma db push
+   ```
+6. Start the development servers:
+   - Frontend: `npm run dev`
+   - Backend: `node src/index.js` (inside backend directory)
