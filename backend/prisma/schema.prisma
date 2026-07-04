@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   String         @id @default(uuid())
+  firstName            String
+  lastName             String
+  email                String         @unique
+  phone                String?
+  passwordHash         String?
+  dob                  DateTime?
+  gender               String?
+  bloodGroup           String?
+  district             String?
+  isVerified           Boolean        @default(false)
+  lastDonationDate     DateTime?
+  googleId             String?        @unique
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+  availableForDonation Boolean        @default(true)
+  requests             BloodRequest[]
+}
+
+model BloodRequest {
+  id               String   @id @default(uuid())
+  patientName      String
+  bloodGroupNeeded String
+  hospitalName     String
+  district         String
+  urgencyLevel     String
+  status           String   @default("ACTIVE")
+  requesterId      String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  requester        User     @relation(fields: [requesterId], references: [id])
+}
+
+model ImpactStat {
+  id               String   @id @default(uuid())
+  livesSaved       Int      @default(0)
+  activeDonors     Int      @default(0)
+  districtsCovered Int      @default(0)
+  lastUpdated      DateTime @default(now()) @updatedAt
+}
