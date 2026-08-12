@@ -56,6 +56,9 @@ export default function FindBlood() {
 
   return (
     <div className="flex-1 bg-bg-subtle flex flex-col items-center">
+      <Helmet>
+        <title>Find Blood | Drops</title>
+      </Helmet>
       
       {/* Header Section */}
       <section className="w-full bg-gray-900 text-white py-16 px-8 relative overflow-hidden">
