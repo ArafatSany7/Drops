@@ -16,6 +16,7 @@ interface User {
   dob?: string | null;
   lastDonationDate?: string | null;
   availableForDonation?: boolean;
+  role?: string;
 }
 
 interface AuthContextType {
@@ -36,15 +37,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    
     const token = localStorage.getItem('token');
     const storedUser = localStorage.getItem('user');
 
     if (token && storedUser) {
       try {
         setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error('Failed to parse user from local storage');
+      } catch {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
       }
@@ -61,7 +60,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
       toast.success('Logged in successfully!');
-      
+
       if (!userData.bloodGroup) {
         navigate('/onboarding');
       } else {
@@ -100,7 +99,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
       toast.success('Logged in with Google successfully!');
-      
+
       if (!userData.bloodGroup) {
         navigate('/onboarding');
       } else {
