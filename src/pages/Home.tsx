@@ -91,7 +91,7 @@ export default function Home() {
       </section>
 
       {/* 2. Live Stats Section */}
-      <section className="py-12 bg-bg-subtle border-y border-border-subtle">
+      <section className="py-12 bg-bg-subtle border-y border-border-subtle" data-aos="fade-up">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-border-subtle">
             <div className="text-center px-4">
@@ -117,7 +117,7 @@ export default function Home() {
       {/* 3. How It Works Section */}
       <section className="py-24 bg-bg-surface">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
             <h2 className="text-3xl md:text-4xl font-extrabold text-text-base mb-4">How Drops Works</h2>
             <p className="text-text-muted text-lg">Our streamlined process connects those in need with willing donors in just a few clicks.</p>
           </div>
@@ -126,7 +126,7 @@ export default function Home() {
             {/* Connecting Line */}
             <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-border-strong border-t border-dashed border-border-strong -z-10" />
             
-            <div className="text-center relative">
+            <div className="text-center relative" data-aos="fade-up" data-aos-delay="0">
               <div className="w-24 h-24 bg-bg-surface border-4 border-bg-subtle shadow-xl shadow-gray-200/50 dark:shadow-none rounded-2xl mx-auto mb-6 flex items-center justify-center transform rotate-3 hover:rotate-0 transition-transform">
                 <Users className="w-10 h-10 text-primary" />
               </div>
@@ -135,7 +135,7 @@ export default function Home() {
               <p className="text-text-muted">Sign up quickly as a donor or receiver. Provide basic medical details to get started.</p>
             </div>
             
-            <div className="text-center relative">
+            <div className="text-center relative" data-aos="fade-up" data-aos-delay="150">
               <div className="w-24 h-24 bg-bg-surface border-4 border-bg-subtle shadow-xl shadow-gray-200/50 dark:shadow-none rounded-2xl mx-auto mb-6 flex items-center justify-center transform -rotate-3 hover:rotate-0 transition-transform">
                 <MapPin className="w-10 h-10 text-blue-500" />
               </div>
@@ -144,7 +144,7 @@ export default function Home() {
               <p className="text-text-muted">Search for specific blood types in your area, or get notified when someone needs your blood.</p>
             </div>
             
-            <div className="text-center relative">
+            <div className="text-center relative" data-aos="fade-up" data-aos-delay="300">
               <div className="w-24 h-24 bg-bg-surface border-4 border-bg-subtle shadow-xl shadow-gray-200/50 dark:shadow-none rounded-2xl mx-auto mb-6 flex items-center justify-center transform rotate-3 hover:rotate-0 transition-transform">
                 <Heart className="w-10 h-10 text-green-500" />
               </div>
@@ -160,7 +160,7 @@ export default function Home() {
       <section className="py-24 bg-gray-900 text-white overflow-hidden relative">
         <div className="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/40 via-transparent to-transparent" />
         <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10 flex flex-col lg:flex-row gap-16 items-center">
-          <div className="flex-1">
+          <div className="flex-1" data-aos="fade-right">
             <h2 className="text-3xl md:text-5xl font-extrabold mb-6">Why Your Donation Matters</h2>
             <p className="text-gray-400 text-lg mb-8 leading-relaxed">
               Blood cannot be manufactured – it can only come from generous donors. Your single donation can be separated into red blood cells, plasma, and platelets, potentially saving three lives.
@@ -195,7 +195,7 @@ export default function Home() {
               </li>
             </ul>
           </div>
-          <div className="flex-1 w-full">
+          <div className="flex-1 w-full" data-aos="fade-left">
             <div className="grid grid-cols-2 gap-4">
               <img src="https://images.unsplash.com/photo-1536856136534-bb679c52a9aa?q=80&w=800&auto=format&fit=crop" alt="Donation" className="rounded-2xl w-full h-48 md:h-64 object-cover" />
               <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop" alt="Lab" className="rounded-2xl w-full h-48 md:h-64 object-cover mt-8" />
@@ -207,7 +207,7 @@ export default function Home() {
       {/* 5. Recent Donors / Request Section */}
       <section className="py-24 bg-bg-subtle">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6" data-aos="fade-up">
             <div className="max-w-2xl">
               <h2 className="text-3xl md:text-4xl font-extrabold text-text-base mb-4">Newest Donors</h2>
               <p className="text-text-muted text-lg">Meet the heroes who recently joined our platform ready to save lives.</p>
@@ -217,7 +217,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
             {loading ? (
               [...Array(3)].map((_, i) => <SkeletonCard key={i} />)
             ) : urgentDonors.length > 0 ? (
@@ -234,14 +234,14 @@ export default function Home() {
       {/* 6. Testimonials */}
       <section className="py-24 bg-bg-surface overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
             <h2 className="text-3xl md:text-4xl font-extrabold text-text-base mb-4">Stories of Hope</h2>
             <p className="text-text-muted text-lg">Read how the Drops community has impacted lives across the country.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Testimonial 1 */}
-            <div className="bg-bg-subtle p-8 rounded-3xl border border-border-subtle relative">
+            <div className="bg-bg-subtle p-8 rounded-3xl border border-border-subtle relative" data-aos="fade-up" data-aos-delay="0">
               <div className="text-5xl text-primary/20 absolute top-4 left-6 font-serif">"</div>
               <p className="text-text-muted italic relative z-10 mb-8 mt-4 leading-relaxed">
                 When my mother needed O- blood during her surgery, we couldn't find it anywhere. Drops connected us with a donor in just 30 minutes. He saved her life.
@@ -256,7 +256,7 @@ export default function Home() {
             </div>
             
             {/* Testimonial 2 */}
-            <div className="bg-primary text-white p-8 rounded-3xl relative shadow-xl shadow-primary/20 transform md:-translate-y-4">
+            <div className="bg-primary text-white p-8 rounded-3xl relative shadow-xl shadow-primary/20 transform md:-translate-y-4" data-aos="fade-up" data-aos-delay="150">
               <div className="text-5xl text-white/20 absolute top-4 left-6 font-serif">"</div>
               <p className="italic relative z-10 mb-8 mt-4 leading-relaxed font-medium">
                 I've been donating for 5 years, but this platform makes it so easy. The notifications ensure I only donate when someone urgently needs my exact blood type.
@@ -271,7 +271,7 @@ export default function Home() {
             </div>
 
             {/* Testimonial 3 */}
-            <div className="bg-bg-subtle p-8 rounded-3xl border border-border-subtle relative">
+            <div className="bg-bg-subtle p-8 rounded-3xl border border-border-subtle relative" data-aos="fade-up" data-aos-delay="300">
               <div className="text-5xl text-primary/20 absolute top-4 left-6 font-serif">"</div>
               <p className="text-text-muted italic relative z-10 mb-8 mt-4 leading-relaxed">
                 As a doctor, coordinating blood for emergency cases used to be a nightmare. This platform has revolutionized how we source rare blood types.
@@ -291,20 +291,20 @@ export default function Home() {
       {/* 7. FAQ Section */}
       <section className="py-24 bg-bg-subtle border-t border-border-subtle">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16" data-aos="fade-up">
             <h2 className="text-3xl md:text-4xl font-extrabold text-text-base mb-4">Frequently Asked Questions</h2>
             <p className="text-text-muted text-lg">Everything you need to know about the donation process.</p>
           </div>
           <div className="space-y-6">
-            <div className="bg-bg-surface p-6 rounded-2xl border border-border-subtle shadow-sm">
+            <div className="bg-bg-surface p-6 rounded-2xl border border-border-subtle shadow-sm" data-aos="fade-up" data-aos-delay="0">
               <h4 className="text-lg font-bold text-text-base mb-2">Who can donate blood?</h4>
               <p className="text-text-muted">Most people who are healthy, weigh at least 50 kg, and are between 18 and 65 years old can donate blood. You must not have any blood-borne diseases or take certain medications.</p>
             </div>
-            <div className="bg-bg-surface p-6 rounded-2xl border border-border-subtle shadow-sm">
+            <div className="bg-bg-surface p-6 rounded-2xl border border-border-subtle shadow-sm" data-aos="fade-up" data-aos-delay="100">
               <h4 className="text-lg font-bold text-text-base mb-2">How often can I donate?</h4>
               <p className="text-text-muted">You can safely donate whole blood every 56 days (8 weeks). This allows your body enough time to completely replenish the red blood cells you donated.</p>
             </div>
-            <div className="bg-bg-surface p-6 rounded-2xl border border-border-subtle shadow-sm">
+            <div className="bg-bg-surface p-6 rounded-2xl border border-border-subtle shadow-sm" data-aos="fade-up" data-aos-delay="200">
               <h4 className="text-lg font-bold text-text-base mb-2">Does donating blood hurt?</h4>
               <p className="text-text-muted">You may feel a slight pinch when the needle goes in, but the donation process itself is painless. Most donors feel completely fine afterward and go about their normal day.</p>
             </div>
@@ -313,7 +313,7 @@ export default function Home() {
       </section>
 
       {/* 8. Call to Action */}
-      <section className="py-24 bg-bg-surface relative overflow-hidden">
+      <section className="py-24 bg-bg-surface relative overflow-hidden" data-aos="zoom-in">
         <div className="absolute inset-0 bg-primary/5 dark:bg-primary/10" />
         <div className="max-w-4xl mx-auto px-6 md:px-8 text-center relative z-10">
           <Droplet className="w-16 h-16 text-primary mx-auto mb-8 animate-bounce" />

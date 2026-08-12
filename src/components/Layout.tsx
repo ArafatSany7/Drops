@@ -4,12 +4,24 @@ import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa'
 import { ThemeToggle } from './ThemeToggle'
 import ProfileDropdown from './ProfileDropdown'
 import { useAuth } from '../context/AuthContext'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 export default function Layout() {
   const location = useLocation()
   const { user, logout } = useAuth()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+      mirror: true,
+      offset: 50,
+      easing: 'ease-in-out',
+    })
+  }, [])
 
   const closeMenu = () => setIsMobileMenuOpen(false)
 

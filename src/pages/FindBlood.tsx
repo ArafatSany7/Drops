@@ -62,7 +62,7 @@ export default function FindBlood() {
       
       {/* Header Section */}
       <section className="w-full bg-gray-900 text-white py-16 px-8 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center">
+        <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center" data-aos="fade-down">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-6">Find a Blood Donor</h1>
           <p className="text-text-muted text-lg max-w-2xl">
             Search our extensive network of verified donors. Filter by location, blood type, and gender to find an exact match quickly.
@@ -71,7 +71,7 @@ export default function FindBlood() {
       </section>
 
       {/* Search and Filter Box */}
-      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20" data-aos="fade-up" data-aos-delay="100">
         <div className="bg-bg-surface p-6 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none border border-border-subtle">
           <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             
@@ -175,8 +175,10 @@ export default function FindBlood() {
         ) : donors.length > 0 ? (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {donors.map((donor) => (
-                <DonorCard key={donor.id} donor={donor} />
+              {donors.map((donor, index) => (
+                <div key={donor.id} data-aos="fade-up" data-aos-delay={(index % 9) * 50}>
+                  <DonorCard donor={donor} />
+                </div>
               ))}
             </div>
             <Pagination 
