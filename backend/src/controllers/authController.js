@@ -6,9 +6,24 @@ const prisma = require('../lib/prisma');
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const JWT_SECRET = process.env.JWT_SECRET || 'your_super_secret_key';
 
+const userSelectFields = {
+  id: true,
+  firstName: true,
+  lastName: true,
+  email: true,
+  bloodGroup: true,
+  phone: true,
+  district: true,
+  gender: true,
+  dob: true,
+  lastDonationDate: true,
+  availableForDonation: true,
+  role: true,
+};
 
-
-
+/**
+ * Register a new user
+ */
 const register = async (req, res) => {
   try {
     const {
@@ -23,49 +38,49 @@ const register = async (req, res) => {
       phone
     } = req.body;
 
-    
-    if (!firstName || !lastName || !email || !password || !phone) {
-      return res.status(400).json({ message: 'Please provide all required fields including phone number' });
+    // Validation
+    const errors = {};
+    if (!firstName || firstName.trim().length < 2) errors.firstName = 'First name must be at least 2 characters';
+    if (!lastName || lastName.trim().length < 1) errors.lastName = 'Last name is required';
+    if (!email) errors.email = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Invalid email format';
+    if (!password) errors.password = 'Password is required';
+    else if (password.length < 6) errors.password = 'Password must be at least 6 characters';
+    if (!phone) errors.phone = 'Phone number is required';
+
+    if (Object.keys(errors).length > 0) {
+      return res.status(400).json({ message: 'Validation failed', errors });
     }
 
-    
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists with this email' });
     }
 
-    
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
 
-    
     const user = await prisma.user.create({
       data: {
-        firstName,
-        lastName,
-        email,
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        email: email.toLowerCase().trim(),
         passwordHash,
         dob: dob ? new Date(dob) : null,
-        gender,
-        bloodGroup,
-        district,
-        phone,
-      }
+        gender: gender || null,
+        bloodGroup: bloodGroup || null,
+        district: district || null,
+        phone: phone.trim(),
+      },
+      select: userSelectFields
     });
 
-    
-    const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: '7d' });
 
     res.status(201).json({
       message: 'User registered successfully',
       token,
-      user: {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        bloodGroup: user.bloodGroup,
-      }
+      user
     });
   } catch (error) {
     console.error('Registration Error:', error);
@@ -73,9 +88,9 @@ const register = async (req, res) => {
   }
 };
 
-
-
-
+/**
+ * Login with email and password
+ */
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -84,25 +99,23 @@ const login = async (req, res) => {
       return res.status(400).json({ message: 'Please provide email and password' });
     }
 
-    
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await prisma.user.findUnique({
+      where: { email: email.toLowerCase().trim() }
+    });
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    
     if (!user.passwordHash) {
       return res.status(400).json({ message: 'Please login using Google' });
     }
 
-    
     const isMatch = await bcrypt.compare(password, user.passwordHash);
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    
-    const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: '7d' });
 
     res.json({
       message: 'Login successful',
@@ -114,6 +127,12 @@ const login = async (req, res) => {
         email: user.email,
         bloodGroup: user.bloodGroup,
         phone: user.phone,
+        district: user.district,
+        gender: user.gender,
+        dob: user.dob,
+        lastDonationDate: user.lastDonationDate,
+        availableForDonation: user.availableForDonation,
+        role: user.role,
       }
     });
   } catch (error) {
@@ -122,31 +141,28 @@ const login = async (req, res) => {
   }
 };
 
-
-
-
+/**
+ * Google OAuth login/register
+ */
 const googleAuth = async (req, res) => {
   try {
     const { token } = req.body;
-    
+
     if (!token) {
       return res.status(400).json({ message: 'Google token is required' });
     }
 
-    
     const ticket = await client.verifyIdToken({
       idToken: token,
       audience: process.env.GOOGLE_CLIENT_ID,
     });
-    
+
     const payload = ticket.getPayload();
     const { sub: googleId, email, given_name: firstName, family_name: lastName } = payload;
 
-    
     let user = await prisma.user.findUnique({ where: { email } });
 
     if (!user) {
-      
       user = await prisma.user.create({
         data: {
           googleId,
@@ -156,15 +172,13 @@ const googleAuth = async (req, res) => {
         }
       });
     } else if (!user.googleId) {
-      // Link googleId if user exists but hasn't linked Google
       user = await prisma.user.update({
         where: { email },
         data: { googleId }
       });
     }
 
-    
-    const jwtToken = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '7d' });
+    const jwtToken = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: '7d' });
 
     res.json({
       message: 'Google login successful',
@@ -176,6 +190,12 @@ const googleAuth = async (req, res) => {
         email: user.email,
         bloodGroup: user.bloodGroup,
         phone: user.phone,
+        district: user.district,
+        gender: user.gender,
+        dob: user.dob,
+        lastDonationDate: user.lastDonationDate,
+        availableForDonation: user.availableForDonation,
+        role: user.role,
       }
     });
   } catch (error) {
@@ -184,27 +204,24 @@ const googleAuth = async (req, res) => {
   }
 };
 
-
-
-
+/**
+ * Update user profile
+ */
 const updateProfile = async (req, res) => {
   try {
-    
-    
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return res.status(401).json({ message: 'Unauthorized, no token' });
     }
     const token = authHeader.split(' ')[1];
-    
+
     let decoded;
     try {
       decoded = jwt.verify(token, JWT_SECRET);
     } catch (err) {
-      console.error('JWT Verification Error:', err.message, 'Token:', token);
       return res.status(401).json({ message: 'Unauthorized, invalid or expired token' });
     }
-    
+
     if (!decoded || !decoded.id) {
       return res.status(401).json({ message: 'Unauthorized, invalid token payload' });
     }
@@ -222,36 +239,25 @@ const updateProfile = async (req, res) => {
     } = req.body;
 
     const updateData = {};
-    if (firstName) updateData.firstName = firstName;
-    if (lastName) updateData.lastName = lastName;
+    if (firstName) updateData.firstName = firstName.trim();
+    if (lastName) updateData.lastName = lastName.trim();
     if (dob) updateData.dob = new Date(dob);
     if (gender) updateData.gender = gender;
     if (bloodGroup) updateData.bloodGroup = bloodGroup;
     if (district) updateData.district = district;
     if (lastDonationDate) updateData.lastDonationDate = new Date(lastDonationDate);
     if (availableForDonation !== undefined) updateData.availableForDonation = availableForDonation;
-    if (phone) updateData.phone = phone;
+    if (phone) updateData.phone = phone.trim();
 
     const user = await prisma.user.update({
       where: { id: decoded.id },
-      data: updateData
+      data: updateData,
+      select: userSelectFields
     });
 
     res.json({
       message: 'Profile updated successfully',
-      user: {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        bloodGroup: user.bloodGroup,
-        district: user.district,
-        gender: user.gender,
-        phone: user.phone,
-        dob: user.dob,
-        lastDonationDate: user.lastDonationDate,
-        availableForDonation: user.availableForDonation
-      }
+      user
     });
   } catch (error) {
     if (error.code === 'P2025') {
@@ -262,9 +268,44 @@ const updateProfile = async (req, res) => {
   }
 };
 
+/**
+ * Get current user profile
+ */
+const getMe = async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+    const token = authHeader.split(' ')[1];
+
+    let decoded;
+    try {
+      decoded = jwt.verify(token, JWT_SECRET);
+    } catch (err) {
+      return res.status(401).json({ message: 'Unauthorized, invalid token' });
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.id },
+      select: userSelectFields
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({ success: true, user });
+  } catch (error) {
+    console.error('Get Me Error:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
 module.exports = {
   register,
   login,
   googleAuth,
-  updateProfile
+  updateProfile,
+  getMe
 };

@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
   id                   String         @id @default(uuid())
   firstName            String
@@ -21,10 +26,12 @@ model User {
   isVerified           Boolean        @default(false)
   lastDonationDate     DateTime?
   googleId             String?        @unique
+  role                 Role           @default(USER)
   createdAt            DateTime       @default(now())
   updatedAt            DateTime       @updatedAt
   availableForDonation Boolean        @default(true)
   requests             BloodRequest[]
+  blogPosts            BlogPost[]
 }
 
 model BloodRequest {
@@ -47,4 +54,30 @@ model ImpactStat {
   activeDonors     Int      @default(0)
   districtsCovered Int      @default(0)
   lastUpdated      DateTime @default(now()) @updatedAt
+}
+
+model BlogPost {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String
+  coverImage  String
+  category    String
+  tags        String[] @default([])
+  authorId    String
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  author      User     @relation(fields: [authorId], references: [id])
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  status    String   @default("UNREAD")
+  createdAt DateTime @default(now())
 }
