@@ -302,10 +302,62 @@ const getMe = async (req, res) => {
   }
 };
 
+/**
+ * Seed Demo Accounts (Temporary endpoint)
+ */
+const seedDemoAccounts = async (req, res) => {
+  try {
+    const passwordHash = await bcrypt.hash('password123', 10);
+    const adminPasswordHash = await bcrypt.hash('admin123', 10);
+
+    // Demo User
+    await prisma.user.upsert({
+      where: { email: 'user@drops.com' },
+      update: { passwordHash: passwordHash },
+      create: {
+        firstName: 'Demo',
+        lastName: 'User',
+        email: 'user@drops.com',
+        passwordHash: passwordHash,
+        bloodGroup: 'O+',
+        district: 'Dhaka',
+        gender: 'Male',
+        availableForDonation: true,
+        role: 'USER',
+        phone: '01700000000'
+      },
+    });
+
+    // Demo Admin
+    await prisma.user.upsert({
+      where: { email: 'admin@drops.com' },
+      update: { passwordHash: adminPasswordHash, role: 'ADMIN' },
+      create: {
+        firstName: 'System',
+        lastName: 'Admin',
+        email: 'admin@drops.com',
+        passwordHash: adminPasswordHash,
+        bloodGroup: 'AB+',
+        district: 'Dhaka',
+        gender: 'Male',
+        availableForDonation: false,
+        role: 'ADMIN',
+        phone: '01700000001'
+      },
+    });
+
+    res.json({ message: 'Demo accounts seeded successfully' });
+  } catch (error) {
+    console.error('Seed Error:', error);
+    res.status(500).json({ message: 'Server Error', error: error.message });
+  }
+};
+
 module.exports = {
   register,
   login,
   googleAuth,
   updateProfile,
-  getMe
+  getMe,
+  seedDemoAccounts
 };
