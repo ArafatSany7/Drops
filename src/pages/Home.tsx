@@ -1,5 +1,6 @@
 import { Droplet, ArrowRight, Heart, Activity, Users, Shield, Clock, MapPin, Search } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { useState, useEffect } from 'react'
 import api from '../api/axios'
 import DonorCard from '../components/DonorCard'
@@ -30,6 +31,9 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <Helmet>
+        <title>Drops | Home</title>
+      </Helmet>
       
       {/* 1. Hero Section */}
       <section className="relative overflow-hidden bg-bg-surface py-20 md:py-32">
