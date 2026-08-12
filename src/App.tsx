@@ -1,5 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider } from './context/AuthContext'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout'
 import ProtectedRoute from './components/ProtectedRoute'
 import AdminRoute from './components/AdminRoute'
@@ -35,52 +34,48 @@ import ContactMessages from './pages/dashboard/ContactMessages'
 
 export default function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            {/* Public Routes */}
-            <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
-            <Route path="registration" element={<Registration />} />
-            <Route path="find-blood" element={<FindBlood />} />
-            <Route path="donor/:id" element={<DonorDetails />} />
-            
-            <Route path="blog" element={<Blog />} />
-            <Route path="blog/:slug" element={<BlogPost />} />
-            <Route path="contact" element={<Contact />} />
-            
-            <Route path="impact" element={<Impact />} />
-            <Route path="about" element={<About />} />
-            <Route path="privacy" element={<Privacy />} />
-            <Route path="terms" element={<Terms />} />
-            
-            {/* Protected Onboarding */}
-            <Route path="onboarding" element={<ProtectedRoute><Onboarding /></ProtectedRoute>} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        {/* Public Routes */}
+        <Route index element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="registration" element={<Registration />} />
+        <Route path="find-blood" element={<FindBlood />} />
+        <Route path="donor/:id" element={<DonorDetails />} />
+        
+        <Route path="blog" element={<Blog />} />
+        <Route path="blog/:slug" element={<BlogPost />} />
+        <Route path="contact" element={<Contact />} />
+        
+        <Route path="impact" element={<Impact />} />
+        <Route path="about" element={<About />} />
+        <Route path="privacy" element={<Privacy />} />
+        <Route path="terms" element={<Terms />} />
+        
+        {/* Protected Onboarding */}
+        <Route path="onboarding" element={<ProtectedRoute><Onboarding /></ProtectedRoute>} />
 
-            {/* Dashboard Routes (User & Admin) */}
-            <Route path="dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
-              {/* Shared Routes */}
-              <Route index element={<Overview />} />
-              <Route path="profile" element={<DashboardProfile />} />
-              <Route path="settings" element={<Settings />} />
-              
-              {/* User Only Routes */}
-              <Route path="my-requests" element={<MyRequests />} />
-              
-              {/* Admin Only Routes */}
-              <Route path="manage-users" element={<AdminRoute><ManageUsers /></AdminRoute>} />
-              <Route path="manage-donors" element={<AdminRoute><ManageDonors /></AdminRoute>} />
-              <Route path="analytics" element={<AdminRoute><Analytics /></AdminRoute>} />
-              <Route path="blog-manager" element={<AdminRoute><BlogManager /></AdminRoute>} />
-              <Route path="messages" element={<AdminRoute><ContactMessages /></AdminRoute>} />
-            </Route>
+        {/* Dashboard Routes (User & Admin) */}
+        <Route path="dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
+          {/* Shared Routes */}
+          <Route index element={<Overview />} />
+          <Route path="profile" element={<DashboardProfile />} />
+          <Route path="settings" element={<Settings />} />
+          
+          {/* User Only Routes */}
+          <Route path="my-requests" element={<MyRequests />} />
+          
+          {/* Admin Only Routes */}
+          <Route path="manage-users" element={<AdminRoute><ManageUsers /></AdminRoute>} />
+          <Route path="manage-donors" element={<AdminRoute><ManageDonors /></AdminRoute>} />
+          <Route path="analytics" element={<AdminRoute><Analytics /></AdminRoute>} />
+          <Route path="blog-manager" element={<AdminRoute><BlogManager /></AdminRoute>} />
+          <Route path="messages" element={<AdminRoute><ContactMessages /></AdminRoute>} />
+        </Route>
 
-            {/* Legacy redirect for old profile route */}
-            <Route path="profile" element={<Navigate to="/dashboard/profile" replace />} />
-          </Route>
-        </Routes>
-      </AuthProvider>
-    </Router>
+        {/* Legacy redirect for old profile route */}
+        <Route path="profile" element={<Navigate to="/dashboard/profile" replace />} />
+      </Route>
+    </Routes>
   )
 }
