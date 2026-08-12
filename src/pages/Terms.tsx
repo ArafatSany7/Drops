@@ -67,7 +67,7 @@ export default function Terms() {
           <h2 className="text-2xl font-bold text-text-base mb-4">8. Contact</h2>
           <p className="text-text-muted leading-relaxed">
             For questions about these Terms of Service, please contact us at{' '}
-            <a href="mailto:legal@drops.com.bd" className="text-primary hover:underline">legal@drops.com.bd</a>.
+            <a href="mailto:human.sany7@gmail.com" className="text-primary hover:underline">human.sany7@gmail.com</a>.
           </p>
         </div>
       </div>

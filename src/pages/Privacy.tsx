@@ -58,8 +58,8 @@ export default function Privacy() {
           <h2 className="text-2xl font-bold text-text-base mb-4">7. Contact Us</h2>
           <p className="text-text-muted leading-relaxed">
             If you have any questions about this Privacy Policy, please contact us at{' '}
-            <a href="mailto:privacy@drops.com.bd" className="text-primary hover:underline">privacy@drops.com.bd</a>{' '}
-            or call us at <a href="tel:+8801700000001" className="text-primary hover:underline">+880 1700-000001</a>.
+            <a href="mailto:human.sany7@gmail.com" className="text-primary hover:underline">human.sany7@gmail.com</a>{' '}
+            or call us at <a href="tel:01636445632" className="text-primary hover:underline">01636445632</a>.
           </p>
         </div>
       </div>
