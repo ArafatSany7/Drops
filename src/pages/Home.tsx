@@ -288,8 +288,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. Call to Action */}
-      <section className="py-24 bg-bg-subtle relative overflow-hidden">
+      {/* 7. FAQ Section */}
+      <section className="py-24 bg-bg-subtle border-t border-border-subtle">
+        <div className="max-w-4xl mx-auto px-6 md:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-text-base mb-4">Frequently Asked Questions</h2>
+            <p className="text-text-muted text-lg">Everything you need to know about the donation process.</p>
+          </div>
+          <div className="space-y-6">
+            <div className="bg-bg-surface p-6 rounded-2xl border border-border-subtle shadow-sm">
+              <h4 className="text-lg font-bold text-text-base mb-2">Who can donate blood?</h4>
+              <p className="text-text-muted">Most people who are healthy, weigh at least 50 kg, and are between 18 and 65 years old can donate blood. You must not have any blood-borne diseases or take certain medications.</p>
+            </div>
+            <div className="bg-bg-surface p-6 rounded-2xl border border-border-subtle shadow-sm">
+              <h4 className="text-lg font-bold text-text-base mb-2">How often can I donate?</h4>
+              <p className="text-text-muted">You can safely donate whole blood every 56 days (8 weeks). This allows your body enough time to completely replenish the red blood cells you donated.</p>
+            </div>
+            <div className="bg-bg-surface p-6 rounded-2xl border border-border-subtle shadow-sm">
+              <h4 className="text-lg font-bold text-text-base mb-2">Does donating blood hurt?</h4>
+              <p className="text-text-muted">You may feel a slight pinch when the needle goes in, but the donation process itself is painless. Most donors feel completely fine afterward and go about their normal day.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Call to Action */}
+      <section className="py-24 bg-bg-surface relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/5 dark:bg-primary/10" />
         <div className="max-w-4xl mx-auto px-6 md:px-8 text-center relative z-10">
           <Droplet className="w-16 h-16 text-primary mx-auto mb-8 animate-bounce" />

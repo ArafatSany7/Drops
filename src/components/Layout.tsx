@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
-import { Droplet, Menu, X, BookOpen, Phone, ShieldCheck, FileText } from 'lucide-react'
+import { Droplet, Menu, X, BookOpen, Phone, ShieldCheck, FileText, Facebook, Github, Linkedin, ExternalLink } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
 import ProfileDropdown from './ProfileDropdown'
 import { useAuth } from '../context/AuthContext'
@@ -124,17 +124,14 @@ export default function Layout() {
                 A technology-driven platform connecting blood donors with those in critical need. Every drop saves a life.
               </p>
               <div className="flex gap-3">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors font-bold text-xs">
-                  FB
+                <a href="https://www.facebook.com/arafat.sany.836467?_rdc=1&_rdr#" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors">
+                  <Facebook className="w-4 h-4" />
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors font-bold text-xs">
-                  X
+                <a href="https://github.com/ArafatSany7" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors">
+                  <Github className="w-4 h-4" />
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors font-bold text-xs">
-                  IG
-                </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors font-bold text-xs">
-                  YT
+                <a href="https://www.linkedin.com/in/arafatsany" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors">
+                  <Linkedin className="w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -165,11 +162,14 @@ export default function Layout() {
             {/* Contact Info */}
             <div>
               <h4 className="font-bold text-text-base mb-4 text-sm uppercase tracking-wider">Contact</h4>
-              <div className="space-y-3 text-sm text-text-muted">
-                <p>📍 House 42, Road 11, Dhanmondi, Dhaka 1205</p>
-                <p>📞 <a href="tel:+8801700000001" className="hover:text-primary transition-colors">+880 1700-000001</a></p>
-                <p>📧 <a href="mailto:hello@drops.com.bd" className="hover:text-primary transition-colors">hello@drops.com.bd</a></p>
-                <p>🕐 24/7 Emergency Support</p>
+              <div className="space-y-4 text-sm text-text-muted">
+                <p>📍 Uttara North, Dhaka, Bangladesh</p>
+                <p>📧 <a href="mailto:human.sany7@gmail.com" className="hover:text-primary transition-colors">human.sany7@gmail.com</a></p>
+                
+                <a href="https://arafat-sany.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-primary/10 text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition-colors border border-primary/20">
+                  <ExternalLink className="w-4 h-4" />
+                  Contact Developer
+                </a>
               </div>
             </div>
           </div>

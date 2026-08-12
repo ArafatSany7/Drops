@@ -63,7 +63,6 @@ export default function Overview() {
   ] : [
     { icon: Users, label: 'Total Donors', value: overview.totalDonors || 0, color: 'bg-primary', bg: 'bg-red-50 dark:bg-red-900/20' },
     { icon: Heart, label: 'Lives Impacted', value: overview.livesImpacted || 0, color: 'bg-green-500', bg: 'bg-green-50 dark:bg-green-900/20' },
-    { icon: Activity, label: 'Districts Covered', value: overview.districtsCovered || 0, color: 'bg-blue-500', bg: 'bg-blue-50 dark:bg-blue-900/20' },
     { icon: BarChart3, label: 'Blog Posts', value: overview.totalBlogPosts || 0, color: 'bg-purple-500', bg: 'bg-purple-50 dark:bg-purple-900/20' },
   ];
 
