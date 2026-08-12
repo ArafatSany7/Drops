@@ -37,7 +37,12 @@ export default function Login() {
     setPassword('password123');
   }
 
-  const fillDemoAdmin = () => {
+  const fillDemoAdmin = async () => {
+    try {
+      await fetch(import.meta.env.PROD ? '/api/auth/seed' : 'http://localhost:5000/api/auth/seed', { method: 'POST' });
+    } catch (err) {
+      console.error('Failed to seed demo accounts', err);
+    }
     setEmail('admin@drops.com');
     setPassword('admin123');
   }
