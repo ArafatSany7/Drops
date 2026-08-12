@@ -1,4 +1,4 @@
-import { Search, MapPin, Loader2, ArrowUpDown } from 'lucide-react'
+import { Search, MapPin, ArrowUpDown } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import api from '../api/axios'
 import DonorCard from '../components/DonorCard'

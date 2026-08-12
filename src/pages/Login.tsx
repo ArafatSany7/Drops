@@ -1,6 +1,6 @@
 import { Droplet, Lock, Mail, Loader2, Info } from 'lucide-react'
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
 
@@ -10,7 +10,6 @@ export default function Login() {
   const { login, googleLogin } = useAuth()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const navigate = useNavigate()
 
   const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "149818820063-kbbh70q8d2k6u6t4on31j3j5isjrnksg.apps.googleusercontent.com";
 

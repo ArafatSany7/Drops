@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { User, LayoutDashboard, Settings, LogOut, ChevronDown } from 'lucide-react';
 
@@ -7,7 +7,6 @@ export default function ProfileDropdown() {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

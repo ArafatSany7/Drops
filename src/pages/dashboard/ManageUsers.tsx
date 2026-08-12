@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Search, ChevronDown, Trash2, Shield } from 'lucide-react';
+import { Search, Trash2, Shield } from 'lucide-react';
 import api from '../../api/axios';
 import Pagination from '../../components/Pagination';
 

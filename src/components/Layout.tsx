@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
-import { Droplet, Menu, X, BookOpen, Phone, ShieldCheck, FileText, Facebook, Twitter, Instagram, Youtube } from 'lucide-react'
+import { Droplet, Menu, X, BookOpen, Phone, ShieldCheck, FileText } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
 import ProfileDropdown from './ProfileDropdown'
 import { useAuth } from '../context/AuthContext'
@@ -124,17 +124,17 @@ export default function Layout() {
                 A technology-driven platform connecting blood donors with those in critical need. Every drop saves a life.
               </p>
               <div className="flex gap-3">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors">
-                  <Facebook className="w-4 h-4" />
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors font-bold text-xs">
+                  FB
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors">
-                  <Twitter className="w-4 h-4" />
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors font-bold text-xs">
+                  X
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors">
-                  <Instagram className="w-4 h-4" />
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors font-bold text-xs">
+                  IG
                 </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors">
-                  <Youtube className="w-4 h-4" />
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors font-bold text-xs">
+                  YT
                 </a>
               </div>
             </div>

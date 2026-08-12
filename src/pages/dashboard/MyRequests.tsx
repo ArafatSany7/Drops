@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Plus, Loader2 } from 'lucide-react';
 import api from '../../api/axios';
-import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
 
 export default function MyRequests() {
-  const { user } = useAuth();
   const [requests, setRequests] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
