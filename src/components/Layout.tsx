@@ -1,5 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
-import { Droplet, Menu, X, BookOpen, Phone, ShieldCheck, FileText, Facebook, Github, Linkedin, ExternalLink } from 'lucide-react'
+import { Droplet, Menu, X, BookOpen, Phone, ShieldCheck, FileText, ExternalLink } from 'lucide-react'
+import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa'
 import { ThemeToggle } from './ThemeToggle'
 import ProfileDropdown from './ProfileDropdown'
 import { useAuth } from '../context/AuthContext'
@@ -125,13 +126,13 @@ export default function Layout() {
               </p>
               <div className="flex gap-3">
                 <a href="https://www.facebook.com/arafat.sany.836467?_rdc=1&_rdr#" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors">
-                  <Facebook className="w-4 h-4" />
+                  <FaFacebook className="w-4 h-4" />
                 </a>
                 <a href="https://github.com/ArafatSany7" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors">
-                  <Github className="w-4 h-4" />
+                  <FaGithub className="w-4 h-4" />
                 </a>
                 <a href="https://www.linkedin.com/in/arafatsany" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-bg-subtle rounded-lg flex items-center justify-center text-text-muted hover:text-primary hover:bg-primary/10 transition-colors">
-                  <Linkedin className="w-4 h-4" />
+                  <FaLinkedin className="w-4 h-4" />
                 </a>
               </div>
             </div>
