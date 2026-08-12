@@ -135,9 +135,12 @@ export default function Blog() {
                     </div>
                     <h3 className="text-lg font-bold text-text-base mb-2 group-hover:text-primary transition-colors line-clamp-2">{post.title}</h3>
                     <p className="text-sm text-text-muted leading-relaxed flex-1 line-clamp-3">{post.excerpt}</p>
-                    <div className="mt-4 pt-4 border-t border-border-subtle flex items-center gap-2 text-xs text-text-muted">
-                      <User className="w-3.5 h-3.5" />
-                      {post.author.firstName} {post.author.lastName}
+                    <div className="mt-4 pt-4 border-t border-border-subtle flex items-center justify-between text-xs text-text-muted">
+                      <div className="flex items-center gap-2">
+                        <User className="w-3.5 h-3.5" />
+                        {post.author.firstName} {post.author.lastName}
+                      </div>
+                      <span className="font-bold text-primary group-hover:underline">Read More</span>
                     </div>
                   </div>
                 </Link>
